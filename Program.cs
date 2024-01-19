@@ -1,5 +1,6 @@
-﻿using System.Collections;
+﻿var dict = new Dictionary<int, int> { { 123, 111 }, { 456, 222 } };
 
-var dict = new Hashtable { { 123, 111 }, { 456, 222 } };
-var r0 = dict[789];
-var r = (int)r0;
+if (dict.TryGetValue(789, out var r))
+{
+    Console.WriteLine(r);
+}
