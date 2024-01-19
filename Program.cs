@@ -1,23 +1,5 @@
-﻿var dict = new Dictionary<int, int> { { 123, 111 }, { 456, 222 } };
+﻿var valueHolder = new ValueHolder<string?>("123");
+valueHolder.TryExecute(Console.WriteLine);
 
-dict.TryExecute(789, Console.WriteLine);
-
-var dict2 = new Dictionary<string, int> { { "123", 111 }, { "456", 222 } };
-
-dict2.TryExecute("456", Console.WriteLine);
-
-public static class DictionaryExtension
-{
-    public static void TryExecute<TKey, TValue>(
-        this Dictionary<TKey, TValue> dict,
-        TKey key,
-        Action<TValue> action
-    )
-        where TKey : notnull
-    {
-        if (dict.TryGetValue(key, out var r))
-        {
-            action(r);
-        }
-    }
-}
+var valueHolder2 = new ValueHolder<string?>(null);
+valueHolder2.TryExecute(Console.WriteLine);
