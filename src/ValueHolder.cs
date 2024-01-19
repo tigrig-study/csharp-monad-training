@@ -8,11 +8,13 @@ public struct ValueHolder<T>
         this.value = value;
     }
 
-    public void TryExecute(Action<T> action)
+    public T TryExecute(Func<T, T> func)
     {
         if (value != default)
         {
-            action(value);
+            return func(value);
         }
+
+        return value;
     }
 }
