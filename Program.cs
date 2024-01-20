@@ -1,5 +1,6 @@
 ﻿var valueHolder1 = ValueHolder.Some("abc");
-valueHolder1.TryExecute(Console.WriteLine); // 実行される
-
-var valueHolder2 = ValueHolder.None<string>();
-valueHolder2.TryExecute(Console.WriteLine); // 実行されない
+var valueHolder2 = valueHolder1.TryExecute(value =>
+{
+    var valueHolderInner = ValueHolder.Some("def");
+    return valueHolderInner.TryExecute(valueInner => ValueHolder.Some(value + valueInner));
+});

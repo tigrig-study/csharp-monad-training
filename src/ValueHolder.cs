@@ -8,11 +8,11 @@ public struct ValueHolder<T>
         this.value = value;
     }
 
-    public ValueHolder<T> TryExecute(Func<T, T> func)
+    public ValueHolder<T> TryExecute(Func<T, ValueHolder<T>> func)
     {
         if (value != default)
         {
-            return new ValueHolder<T>(func(value));
+            return func(value);
         }
 
         return this; // new ValueHolder(value) と同義
