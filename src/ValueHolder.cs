@@ -8,7 +8,7 @@ public struct Option<T>
         this.value = value;
     }
 
-    public Option<T> TryExecute(Func<T, Option<T>> func)
+    public Option<T> Bind(Func<T, Option<T>> func)
     {
         if (value != default)
         {
@@ -29,7 +29,7 @@ public struct Option<T>
 
 public static class Option
 {
-    public static Option<T> Some<T>(T value)
+    public static Option<T> Return<T>(T value)
         where T : class
     {
         return new Option<T>(value);

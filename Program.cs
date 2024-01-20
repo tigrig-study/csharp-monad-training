@@ -1,6 +1,6 @@
-﻿var option1 = Option.Some("abc");
-var option2 = option1.TryExecute(value =>
+﻿var option1 = Option.Return("abc");
+var option2 = option1.Bind(value =>
 {
-    var optionInner = Option.Some("def");
-    return optionInner.TryExecute(valueInner => Option.Some(value + valueInner));
+    var optionInner = Option.Return("def");
+    return optionInner.Bind(valueInner => Option.Return(value + valueInner));
 });
