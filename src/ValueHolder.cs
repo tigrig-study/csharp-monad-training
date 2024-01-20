@@ -26,3 +26,18 @@ public struct ValueHolder<T>
         }
     }
 }
+
+public static class ValueHolder
+{
+    public static ValueHolder<T> Some<T>(T value)
+        where T : class
+    {
+        return new ValueHolder<T>(value);
+    }
+
+    public static ValueHolder<T?> None<T>()
+        where T : class
+    {
+        return new ValueHolder<T?>(null);
+    }
+}
