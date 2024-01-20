@@ -1,6 +1,6 @@
-﻿var valueHolder1 = ValueHolder.Some("abc");
-var valueHolder2 = valueHolder1.TryExecute(value =>
+﻿var option1 = Option.Some("abc");
+var option2 = option1.TryExecute(value =>
 {
-    var valueHolderInner = ValueHolder.Some("def");
-    return valueHolderInner.TryExecute(valueInner => ValueHolder.Some(value + valueInner));
+    var optionInner = Option.Some("def");
+    return optionInner.TryExecute(valueInner => Option.Some(value + valueInner));
 });

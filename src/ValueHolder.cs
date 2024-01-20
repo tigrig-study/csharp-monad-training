@@ -1,14 +1,14 @@
-public struct ValueHolder<T>
+public struct Option<T>
     where T : class?
 {
     private readonly T value;
 
-    public ValueHolder(T value)
+    public Option(T value)
     {
         this.value = value;
     }
 
-    public ValueHolder<T> TryExecute(Func<T, ValueHolder<T>> func)
+    public Option<T> TryExecute(Func<T, Option<T>> func)
     {
         if (value != default)
         {
@@ -27,17 +27,17 @@ public struct ValueHolder<T>
     }
 }
 
-public static class ValueHolder
+public static class Option
 {
-    public static ValueHolder<T> Some<T>(T value)
+    public static Option<T> Some<T>(T value)
         where T : class
     {
-        return new ValueHolder<T>(value);
+        return new Option<T>(value);
     }
 
-    public static ValueHolder<T?> None<T>()
+    public static Option<T?> None<T>()
         where T : class
     {
-        return new ValueHolder<T?>(null);
+        return new Option<T?>(null);
     }
 }
