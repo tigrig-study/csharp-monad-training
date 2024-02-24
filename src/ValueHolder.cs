@@ -1,9 +1,9 @@
-public struct Option<T>
+public class Option<T>
     where T : class?
 {
-    private readonly T value;
+    private readonly T? value;
 
-    public Option(T value)
+    public Option(T? value)
     {
         this.value = value;
     }
@@ -30,14 +30,14 @@ public struct Option<T>
 public static class Option
 {
     public static Option<T> Return<T>(T value)
-        where T : class
+        where T : class?
     {
         return new Option<T>(value);
     }
 
-    public static Option<T?> None<T>()
-        where T : class
+    public static Option<T> None<T>()
+        where T : class?
     {
-        return new Option<T?>(null);
+        return new Option<T>(null);
     }
 }
