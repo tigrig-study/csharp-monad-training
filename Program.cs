@@ -1,17 +1,12 @@
-﻿// モナド則1: Bind に Return を渡すと、元の値がそのまま帰ってくる
-var sonomama1 = Option.Return("111");
-var sonomama2 = sonomama1.Bind(Option.Return);
-sonomama1.Match(Console.WriteLine); // ← 111
-sonomama2.Match(Console.WriteLine); // ← 111
+﻿var option11 = Option.Return(new int[] { 1 });
+var option12 = option11.Bind(value1 =>
+{
+    var option21 = Option.Return(new int[] { 2 });
+    return option21.Bind(value2 =>
+    {
+        var option31 = Option.Return(new int[] { 3 });
+        return option31.Bind(value3 => Option.Return("" + value1[0] + value2[0] + value3[0]));
+    });
+});
 
-// モナド則2: ２つの関数を続けてBindするのは、これらの関数から決まる一つの関数をBindすることに等しい
-var option1 = Option.Return("abc");
-var option2 = option1.Bind(value => Option.Return(value + "def"));
-var option3 = option2.Bind(value => Option.Return(value + "ghi"));
-option3.Match(Console.WriteLine); // ← abcdefghi
-
-var option4 = Option.Return("abc");
-var option5 = option4.Bind(value =>
-    Option.Return(value + "def").Bind(value => Option.Return(value + "ghi"))
-);
-option5.Match(Console.WriteLine); // ← abcdefghi
+option12.Match(Console.WriteLine);
