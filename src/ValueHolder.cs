@@ -19,7 +19,7 @@ public class Option<T>
         return Option.None<U>();
     }
 
-    public void TryExecute(Action<T> action)
+    public void Match(Action<T> action)
     {
         if (value != default)
         {
