@@ -8,14 +8,15 @@ public class Option<T>
         this.value = value;
     }
 
-    public Option<T> Bind(Func<T, Option<T>> func)
+    public Option<U> Bind<U>(Func<T, Option<U>> func)
+        where U : class?
     {
-        if (value != default)
+        if (value != default(T))
         {
             return func(value);
         }
 
-        return this; // new ValueHolder(value) と同義
+        return Option.None<U>();
     }
 
     public void TryExecute(Action<T> action)
